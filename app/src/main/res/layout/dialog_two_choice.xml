@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center_horizontal"
+    android:id="@+id/two_choice_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="179dp"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    android:background="@drawable/background_round_shape_white">
+
+    <TextView
+        android:id="@+id/tv_desc_dialog_posneg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/two_choice_dialog_view_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Description" />
+
+    <View
+        android:id="@+id/two_choice_dialog_view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@id/two_choice_dialog_tv_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/two_choice_dialog_view_line2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/two_choice_dialog_tv_left"
+        app:layout_constraintStart_toEndOf="@id/two_choice_dialog_tv_right"
+        app:layout_constraintTop_toTopOf="@id/two_choice_dialog_tv_right" />
+
+    <TextView
+        android:id="@+id/two_choice_dialog_tv_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_bottom_left_round_primary"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="@string/negative"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/two_choice_dialog_view_line2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/two_choice_dialog_tv_right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_bottom_right_round_primary"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="@string/positive"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/two_choice_dialog_view_line2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

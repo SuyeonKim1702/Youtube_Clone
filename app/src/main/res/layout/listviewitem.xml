@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/listviewitem_layout">
+    <VideoView
+        android:id="@+id/vv_listviewitem_video"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"></VideoView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/iv_listviewitem_profile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_launcher_background"></ImageView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_listviewitem_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="으아ㅏㅇ라아라"
+            android:maxLines="2"></TextView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_listviewitem_channelName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:singleLine="true"
+                    android:text="문명특급"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:singleLine="true"
+                    android:text="조회수 "></TextView>
+                <TextView
+                    android:id="@+id/tv_listviewitem_viewCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:singleLine="true"
+                    android:text="39만회"></TextView>
+                <TextView
+                    android:id="@+id/tv_listviewitem_uploadDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3일전"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+<ImageButton
+    android:id="@+id/ib_listviewitem_more"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.5"></ImageButton>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
