@@ -3,43 +3,53 @@ package com.example.youtube_clone.src.main;
 import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
 
-public class ListViewItem {
-    private Drawable profileImage ;
-    private String title ;
-    private String channelName ;
-    private String viewCount ;
-    private String uploadDate ;
-    private MediaStore.Video video;
+import java.io.Serializable;
 
-    public void setProfileImage(Drawable profileImage) {
-        this.profileImage = profileImage ;
+public class ListViewItem implements Serializable {
+    private String mThumUrl;
+    private String mTitle;
+    private String mChannelName;
+    private String mViewCount ;
+    private String mUploadDate ;
+    private int mType;
+
+    public void setThumUrl(String thumUrl) {
+        this.mThumUrl = thumUrl ;
     }
-    public void setTitle(String title) {
-       this.title = title ;
+    public void setTitle(String mTitle) {
+       this.mTitle = mTitle;
     }
     public void setChannelName(String channelName) {
-        this.channelName = channelName;
+        this.mChannelName = channelName;
     }
     public void setUploadDate(String uploadDate) {
-        this.uploadDate = uploadDate;
+        this.mUploadDate = uploadDate;
     }
     public void setViewCount(String viewCount) {
-        this.viewCount = viewCount;
+        this.mViewCount = viewCount;
     }
 
-    public Drawable getProfileImage() {
-        return this.profileImage ;
+    public void setType(int type) {
+        this.mType = type;
+    }
+
+    public String getThumUrl() {
+        return this.mThumUrl;
     }
     public String getTitle() {
-        return this.title ;
+        return this.mTitle;
     }
     public String getUploadDate() {
-        return this.uploadDate ;
+        return this.mUploadDate ;
     }
     public String getViewCount() {
-        return this.viewCount ;
+        return this.mViewCount ;
     }
     public String getChannelName() {
-        return this.channelName ;
+        return this.mChannelName;
+    }
+
+    public int getType() {
+        return this.mType;
     }
 }

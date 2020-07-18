@@ -5,5 +5,6 @@
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
     <string name="positive">네</string>
     <string name="negative">아니오</string>
+    <string name="dot">  ·  </string>
 
 </resources>

@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/menu_item_home"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="Home" />
+        android:icon="@drawable/ic_home"
+        android:title="홈" />
     <item
         android:id="@+id/menu_item_explore"
-        android:icon="@android:drawable/ic_menu_camera"
-        android:title="Explore" />
+        android:icon="@drawable/ic_explore"
+        android:title="탐색" />
     <item
         android:id="@+id/menu_item_subscribe"
-        android:icon="@android:drawable/ic_menu_call"
-        android:title="Subscribe" />
+        android:icon="@drawable/ic_subscription"
+        android:title="구독" />
     <item
         android:id="@+id/menu_item_inbox"
-        android:icon="@android:drawable/ic_menu_call"
-        android:title="Inbox" />
+        android:icon="@drawable/ic_mail"
+        android:title="수신함" />
     <item
         android:id="@+id/menu_item_library"
-        android:icon="@android:drawable/ic_menu_call"
-        android:title="Library" />
+        android:icon="@drawable/ic_library"
+        android:title="보관함" />
 </menu>

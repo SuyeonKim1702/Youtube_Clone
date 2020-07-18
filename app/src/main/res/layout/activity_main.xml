@@ -4,6 +4,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/main_logo" />
+
+            <ImageView
+                android:id="@+id/ib_main_account"
+                android:layout_alignParentEnd="true"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/ic_account_default" />
+
+            <ImageView
+                android:id="@+id/ib_main_search"
+                android:layout_toStartOf="@+id/ib_main_account"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:layout_marginEnd="22dp"
+                android:src="@drawable/ic_search" />
+
+            <ImageView
+                android:id="@+id/ib_main_record"
+                android:layout_toStartOf="@+id/ib_main_search"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:layout_marginEnd="22dp"
+                android:src="@drawable/ic_camcoder" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
@@ -11,7 +62,7 @@
         app:layout_constraintBottom_toTopOf="@id/navigationView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/toolBar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
@@ -21,5 +72,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
-        app:menu="@menu/menu_bottomnavigationview" />
+        app:labelVisibilityMode="labeled"
+        app:itemTextColor="@color/color_state"
+        app:itemIconTint="@color/color_state"
+        app:itemIconSize="@dimen/navigationIconSize"
+        app:menu="@menu/menu_bottomnavigationview"
+        style="@style/BottomNavigationView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

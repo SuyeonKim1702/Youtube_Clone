@@ -1,6 +1,7 @@
 package com.example.youtube_clone.src.main;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,8 +16,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.youtube_clone.R;
 import com.example.youtube_clone.src.BaseActivity;
-import com.example.youtube_clone.src.common.view.SimpleMessageDialog;
-import com.example.youtube_clone.src.common.view.TwoChoiceDialog;
 import com.example.youtube_clone.src.main.Home.HomeFragment;
 import com.example.youtube_clone.src.main.Inbox.InboxFragment;
 import com.example.youtube_clone.src.main.Library.LibraryFragment;
@@ -24,10 +23,13 @@ import com.example.youtube_clone.src.main.Subscribe.SubscribeFragment;
 import com.example.youtube_clone.src.main.interfaces.MainActivityView;
 import com.example.youtube_clone.src.main.models.SignInResponse;
 import com.example.youtube_clone.src.main.Explore.ExploreFragment;
+import com.example.youtube_clone.src.splash.models.DefaultResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends BaseActivity implements MainActivityView {
+
+    BottomNavigationView bottomNavigationView;
 
     final MainService mainService = new MainService(this);
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -42,10 +44,18 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        DefaultResponse.Result[] result = (DefaultResponse.Result[]) intent.getSerializableExtra("result");
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("result",result);
+        bundle.putInt("check",1);
+        fragmentHome.setArguments(bundle);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, fragmentHome).commitAllowingStateLoss();
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
+        bottomNavigationView = findViewById(R.id.navigationView);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
 
     }
@@ -58,6 +68,9 @@ public class MainActivity extends BaseActivity implements MainActivityView {
             switch(menuItem.getItemId())
             {
                 case R.id.menu_item_home:
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("check",0);
+                    fragmentHome.setArguments(bundle);
                     transaction.replace(R.id.frameLayout, fragmentHome).commitAllowingStateLoss();
                     break;
                 case R.id.menu_item_explore:
@@ -73,6 +86,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                     transaction.replace(R.id.frameLayout, fragmentLibrary).commitAllowingStateLoss();
                     break;
             }
+           // bottomNavigationView.setItemIconSize(18);
             return true;
         }
     }
@@ -114,3 +128,4 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         }
     }
 
+//https://firebasestorage.googleapis.com/v0/b/clone-e7f75.appspot.com/o/%E1%84%8B%E1%85%AE%E1%84%86%E1%85%A1%20%E1%84%89%E1%85%A1%E1%84%90%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B4%20%E1%84%87%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A1%E1%84%85%E1%85%A1%E1%86%A8.png?alt=media&token=f5e9d7eb-f5df-4d97-b100-ab4d958d46ef
