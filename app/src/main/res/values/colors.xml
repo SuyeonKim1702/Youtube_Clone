@@ -5,4 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="titleColor">#515151</color>
     <color name="subTextColor">#6b6b6b</color>
+    <color name="toolBarColor">#ffffff</color>
+    <color name="defaultImageColor">#dbdbdb</color>
 </resources>

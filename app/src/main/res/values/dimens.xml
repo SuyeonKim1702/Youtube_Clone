@@ -2,7 +2,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="TitleSize">13sp</dimen>
     <dimen name="subTextSize">10sp</dimen>
-    <dimen name="navigationIconSize">24sp</dimen>
+    <dimen name="navigationIconSize">22sp</dimen>
+    <dimen name="ToolBarIconSize">26sp</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10sp</dimen>
 </resources>

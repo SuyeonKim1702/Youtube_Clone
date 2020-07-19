@@ -64,7 +64,7 @@ public class ListViewAdapter extends BaseAdapter {
             this.channelName.setText(channelName);
             this.uploadDate.setText(uploadDate);
             this.viewCount.setText(viewCount);
-            System.out.println(thumUrl+"입니다");
+
             Picasso.with(mContext)
                     .load(thumUrl)
                     .into(thumbNail);
@@ -128,6 +128,8 @@ public class ListViewAdapter extends BaseAdapter {
         }
 
     }
+
+
 
     // 아이템 데이터 추가를 위한 함수.
     public void addItem(String title,String channelName, String viewCount, String uploadDate,String thumUrl, int type) {

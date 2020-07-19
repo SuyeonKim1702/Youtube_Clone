@@ -11,6 +11,17 @@ public class DefaultResponse implements Serializable {
     //server에서 주는 이름과 SerializeName을 같게 해두면 자동으로 parsing이 된다
 
     public class Result implements Serializable{
+        @SerializedName("video")
+        Video[] video;
+
+        public Video[] getVideo() {
+            return video;
+        }
+
+
+    }
+
+    public class Video implements Serializable{
         @SerializedName("TitleText")
         private String titleText;
         @SerializedName("UserId")
@@ -37,10 +48,11 @@ public class DefaultResponse implements Serializable {
         public String getThumUrl() {
             return ThumUrl;
         }
+
     }
 
     @SerializedName("result")
-    private Result[] result;
+    private Result result;
 
     @SerializedName("message")
     private String message;
@@ -48,9 +60,11 @@ public class DefaultResponse implements Serializable {
     public String getMessage() {
         return message;
     }
+    public Result getResult() { return result;}
 
-    public Result[] getResult() {
-        return result;
+
+
+
+
     }
 
-}

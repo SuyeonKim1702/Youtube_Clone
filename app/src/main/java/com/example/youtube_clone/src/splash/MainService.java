@@ -18,9 +18,9 @@ class MainService {
     }
 
 
-    void getVideoPathAndQuery() {
+    void getVideoPathAndQuery(int pageNum) {
         final MainRetrofitInterface mainRetrofitInterface = getRetrofit().create(MainRetrofitInterface.class);
-        mainRetrofitInterface.getVideoPathAndQuery(1).enqueue(new Callback<DefaultResponse>() { // 복붙해서 사용
+        mainRetrofitInterface.getVideoPathAndQuery(pageNum).enqueue(new Callback<DefaultResponse>() { // 복붙해서 사용
             @Override   // 성공
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 final DefaultResponse defaultResponse = response.body(); // 파싱된 값들이 있음
