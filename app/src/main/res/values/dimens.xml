@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <dimen name="TitleSize">13sp</dimen>
-    <dimen name="subTextSize">10sp</dimen>
+    <!-- MainActivity -->
     <dimen name="navigationIconSize">22sp</dimen>
     <dimen name="ToolBarIconSize">26sp</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10sp</dimen>
+
+    <!-- RecyclerViewItem-->
+    <dimen name="profileImage">35dp</dimen>
+
+    <!-- recycler_view_item1 -->
+    <dimen name="TitleSize">13sp</dimen>
+    <dimen name="subTextSize">10sp</dimen>
+    <dimen name="margin"> 9dp</dimen>
+
+    <!-- recycler_view_item2 -->
+    <dimen name="TitleSize2">13sp</dimen>
+    <dimen name="marginTop"> 9dp</dimen>
+    <dimen name="marginBottom">8dp</dimen>
+    <dimen name="marginBottomUpDown">12dp</dimen>
+
+
 </resources>

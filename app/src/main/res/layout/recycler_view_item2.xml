@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/listviewitem_layout"
+    android:background="@color/iconBackgroundColor"
+    tools:ignore="MissingDefaultResource">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:background="@color/postingViewColor"
+        android:layout_marginBottom="6dp">
+
+    </View>
+    <LinearLayout
+        android:layout_margin="@dimen/marginTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_listviewitem2_profile"
+                android:layout_width="@dimen/profileImage"
+                android:layout_height="@dimen/profileImage"
+                android:src="@drawable/ic_launcher_background" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_listviewitem2_channelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/TitleSize"
+                android:textColor="@color/titleColor"
+                android:text="여락이들_"
+                android:singleLine="true" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_listviewitem2_uploadDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="15시간 전(수정됨)"
+                    android:textColor="@color/subTextColor"
+                    android:textSize="@dimen/TitleSize2" />
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:background="#ffffff"
+                android:id="@+id/ib_listviewitem2_more"
+                android:layout_width="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/right_button"
+                android:layout_height="15dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/contentColor"
+        android:layout_marginStart="@dimen/marginTop"
+        android:text="답답한 요즘, 여러분은 언제 제일 여행이 그립나요?"
+        android:id="@+id/tv_listviewitem2_content">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/iv_listviewitem2_photo"
+        android:scaleType="fitXY"
+        android:background="@color/defaultImageColor"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/marginTop"
+        android:layout_height="350dp"></ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginTop"
+        android:layout_marginEnd="@dimen/marginTop"
+        android:layout_marginBottom="@dimen/marginBottomUpDown"
+        android:layout_marginTop="@dimen/marginBottomUpDown"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/ib_listviewitem2_thumbUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginBottom"
+            android:background="@color/iconBackgroundColor"
+            android:src="@drawable/ic_thumb_up"></ImageButton>
+        <TextView
+            android:id="@+id/tv_listviewitem2_thumbUpNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/marginBottom"
+            android:layout_marginEnd="@dimen/marginBottom"
+            android:text="1.8천"></TextView>
+        <ImageButton
+            android:id="@+id/ib_listviewitem2_thumbDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/iconBackgroundColor"
+            android:src="@drawable/ic_thumb_down"></ImageButton>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </View>
+        <ImageButton
+            android:id="@+id/ib_listviewitem2_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/marginBottom"
+            android:background="@color/iconBackgroundColor"
+            android:src="@drawable/ic_comment"></ImageButton>
+        <TextView
+            android:id="@+id/tv_listviewitem2_commentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/marginBottom"
+            android:text="6"></TextView>
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:background="@color/postingViewColor">
+    </View>
+
+</LinearLayout>

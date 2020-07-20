@@ -12,6 +12,14 @@ public class ListViewItem implements Serializable {
     private String mViewCount ;
     private String mUploadDate ;
     private int mType;
+    private String mContentText;
+    private String mImage;
+    private String mThumbUpCount;
+    private int mCommentCount;
+    private String mProfileImage;
+
+    public ListViewItem() {
+    }
 
     public void setThumUrl(String thumUrl) {
         this.mThumUrl = thumUrl ;
@@ -28,14 +36,20 @@ public class ListViewItem implements Serializable {
     public void setViewCount(String viewCount) {
         this.mViewCount = viewCount;
     }
-
+    public void setContentText(String mContentText) { this.mContentText = mContentText; }
+    public void setImage(String mImage) { this.mImage = mImage; }
+    public void setCommentCount(int mCommentCount) { this.mCommentCount = mCommentCount; }
+    public void setThumbUpCount(String mThumbUpCount) {
+        this.mThumbUpCount = mThumbUpCount;
+    }
     public void setType(int type) {
         this.mType = type;
     }
-
-    public String getThumUrl() {
-        return this.mThumUrl;
+    public void setProfileImage(String mProfileImage) {
+        this.mProfileImage = mProfileImage;
     }
+
+    public String getThumUrl() { return this.mThumUrl; }
     public String getTitle() {
         return this.mTitle;
     }
@@ -48,8 +62,13 @@ public class ListViewItem implements Serializable {
     public String getChannelName() {
         return this.mChannelName;
     }
-
     public int getType() {
         return this.mType;
     }
+    public String getContentText() { return mContentText; }
+    public String getImage() { return mImage; }
+    public String getThumbUpCount() { return mThumbUpCount; }
+    public int getCommentCount() { return mCommentCount; }
+    public String getProfileImage() { return mProfileImage; }
+
 }

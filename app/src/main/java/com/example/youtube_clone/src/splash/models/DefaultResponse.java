@@ -14,12 +14,61 @@ public class DefaultResponse implements Serializable {
         @SerializedName("video")
         Video[] video;
 
+        @SerializedName("community")
+        Community[] community;
+
         public Video[] getVideo() {
             return video;
         }
 
+        public Community[] getCommunity() {
+            return community;
+        }
+
 
     }
+
+    public class Community implements Serializable{
+
+        @SerializedName("UserId")
+        private String channelName;
+        @SerializedName("CreateAt")
+        private String createAt;
+        @SerializedName("MainText")
+        private String mainText;
+        @SerializedName("LikesCount")
+        private String likesCount;
+        @SerializedName("ImgUrl")
+        private String imgUrl;
+        @SerializedName("ProfileUrl")
+        private String profileUrl;
+        @SerializedName("CommentCount")
+        private int commentCount;
+        //추가해줄 것
+
+        public String getChannelName() { return channelName; }
+        public String getCreateAt() {
+            return createAt;
+        }
+        public String getMainText() {
+            return mainText;
+        }
+        public String getLikesCount() {
+            return likesCount;
+        }
+        public String getImgUrl() {
+            return imgUrl;
+        }
+        public String getProfileUrl() {
+            return profileUrl;
+        }
+        public int getCommentCount() {
+            return commentCount;
+        }
+
+
+    }
+
 
     public class Video implements Serializable{
         @SerializedName("TitleText")
@@ -30,8 +79,10 @@ public class DefaultResponse implements Serializable {
         private String ViewCount;
         @SerializedName("ThumUrl")
         private String ThumUrl;
-        //추가해줄 것
-        private String UploadDate;
+        @SerializedName("ProfileUrl")
+        private String profileUrl;
+        @SerializedName("CreateAt")
+        private String createAt;
 
         public String getTitle() {
             return titleText;
@@ -42,11 +93,14 @@ public class DefaultResponse implements Serializable {
         public String getViewCount() {
             return ViewCount;
         }
-        public String getUploadDate() {
-            return UploadDate;
+        public String getCreateAt() {
+            return createAt;
         }
         public String getThumUrl() {
             return ThumUrl;
+        }
+        public String getProfileUrl() {
+            return profileUrl;
         }
 
     }
