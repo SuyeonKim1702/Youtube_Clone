@@ -1,15 +1,35 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
-        android:layout_margin="10dp"
-        android:background="@color/postingViewColor"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/image_outline"
         android:id="@+id/iv_inner_storyImage"
-        android:layout_width="150dp"
-        android:layout_height="230dp">
+        android:layout_width="120dp"
+        android:layout_height="180dp">
     </ImageView>
-
-    
-
-</LinearLayout>
+<TextView
+    android:layout_margin="10dp"
+    android:layout_alignBottom="@+id/iv_inner_storyImage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tv_inner_channelName"
+    android:textColor="@color/storyChannelNameColor"
+    android:layout_centerHorizontal="true"
+    android:textSize="@dimen/TitleSize"
+    android:textStyle="bold"
+    android:text="여락이들_">
+</TextView>
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/colorPrimary"
+        android:id="@+id/iv_inner_profileImage"
+        android:layout_width="@dimen/storyProfileImage"
+        android:layout_height="@dimen/storyProfileImage"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/tv_inner_channelName"
+        android:src="@drawable/ic_launcher_background" />
+</RelativeLayout>

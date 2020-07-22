@@ -22,6 +22,7 @@
             app:contentInsetStart="10dp"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|enterAlways|snap">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -35,13 +36,14 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/main_logo" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/ib_main_account"
                     android:layout_alignParentEnd="true"
                     android:layout_width="@dimen/ToolBarIconSize"
                     android:layout_height="@dimen/ToolBarIconSize"
                     android:layout_centerVertical="true"
                     android:scaleType="fitXY"
+                    android:background="@color/iconBackgroundColor"
                     android:layout_marginEnd="15dp"
                     android:src="@drawable/ic_account_default" />
 

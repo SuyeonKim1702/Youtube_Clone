@@ -1,4 +1,4 @@
-package com.example.youtube_clone.src.main;
+package com.example.youtube_clone.src.main.Home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,58 +12,65 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.youtube_clone.R;
+import com.example.youtube_clone.src.main.RecyclerViewItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static RecyclerView horizontalList;
-    private ArrayList<ListViewItem> mData = null ;
-    private ArrayList<ListViewItem> mHorizontalData = null ;
+    private ArrayList<RecyclerViewItem> mData = null ;
+    private ArrayList<RecyclerViewItem> mHorizontalData = null ;
     private static Context mContext;
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder1 extends RecyclerView.ViewHolder {
-        TextView tvTitle,channelName,uploadDate,viewCount;
+        TextView tvTitle,channelName,uploadDate,viewCount,timeLine;
         ImageView thumbNail,profileImage;
 
         ViewHolder1(View v) {
             super(v) ;
             // 뷰 객체에 대한 참조. (hold strong reference)
-            tvTitle = v.findViewById(R.id.tv_listviewitem_title);
-            channelName = v.findViewById(R.id.tv_listviewitem_channelName);
-            uploadDate = v.findViewById(R.id.tv_listviewitem_uploadDate);
-            viewCount = v.findViewById(R.id.tv_listviewitem_viewCount);
-            thumbNail = v.findViewById(R.id.iv_listviewitem_video);
-            profileImage = v.findViewById(R.id.iv_listviewitem_profile);
+            tvTitle = v.findViewById(R.id.tv_recyclerviewitem1_title);
+            channelName = v.findViewById(R.id.tv_recyclerviewitem1_channelName);
+            uploadDate = v.findViewById(R.id.tv_recyclerviewitem1_uploadDate);
+            viewCount = v.findViewById(R.id.tv_recyclerviewitem1_viewCount);
+            thumbNail = v.findViewById(R.id.iv_recyclerviewitem1_video);
+            profileImage = v.findViewById(R.id.iv_recyclerviewitem1_profile);
+            timeLine = v.findViewById(R.id.tv_recyclerviewitem1_timeline);
         }
     }
 
     public class ViewHolder2 extends RecyclerView.ViewHolder {
         TextView channelName,uploadDate,content,thumbUpCount,commentCount;
-        ImageView image,profileImage;
+        ImageView image,profileImage,thumbIcon;
 
         ViewHolder2(View v) {
             super(v) ;
             // 뷰 객체에 대한 참조. (hold strong reference)
-            channelName = v.findViewById(R.id.tv_listviewitem2_channelName);
-            uploadDate = v.findViewById(R.id.tv_listviewitem2_uploadDate);
-            commentCount = v.findViewById(R.id.tv_listviewitem2_commentNum);
-            thumbUpCount = v.findViewById(R.id.tv_listviewitem2_thumbUpNum);
-            content = v.findViewById(R.id.tv_listviewitem2_content);
-            image = v.findViewById(R.id.iv_listviewitem2_photo);
-            profileImage = v.findViewById(R.id.iv_listviewitem2_profile);
+            channelName = v.findViewById(R.id.tv_recyclerviewitem2_channelName);
+            uploadDate = v.findViewById(R.id.tv_recyclerviewitem2_uploadDate);
+            commentCount = v.findViewById(R.id.tv_recyclerviewitem2_commentNum);
+            thumbUpCount = v.findViewById(R.id.tv_recyclerviewitem2_thumbUpNum);
+            content = v.findViewById(R.id.tv_recyclerviewitem2_content);
+            image = v.findViewById(R.id.iv_recyclerviewitem2_photo);
+            image.setClipToOutline(true);
+            profileImage = v.findViewById(R.id.iv_recyclerviewitem2_profile);
+            thumbIcon = v.findViewById(R.id.iv_recyclerviewitem2_thumbIcon);
+            thumbIcon.setClipToOutline(true);
         }
     }
 
     public class ViewHolder3 extends RecyclerView.ViewHolder {
 
         private HorizontalRecyclerViewAdapter horizontalAdapter;
+        TextView title;
 
         ViewHolder3(View v) {
             super(v) ;
             Context context = itemView.getContext();
-            horizontalList = itemView.findViewById(R.id.horizontal_list);
+            title = v.findViewById(R.id.tv_recyclerviewitem3_story);
+            horizontalList = itemView.findViewById(R.id.rv_recyclerviewitem3_horizontalRv);
             horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             horizontalAdapter = new HorizontalRecyclerViewAdapter(mHorizontalData);
             horizontalList.setAdapter(horizontalAdapter);
@@ -71,7 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     // 생성자
-    public RecyclerViewAdapter(ArrayList<ListViewItem> list, ArrayList<ListViewItem> horizontalList) {
+    public RecyclerViewAdapter(ArrayList<RecyclerViewItem> list, ArrayList<RecyclerViewItem> horizontalList) {
         mData = list ;
         mHorizontalData = horizontalList;
     }
@@ -111,11 +118,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         if (holder instanceof ViewHolder1) {
-            ListViewItem item = mData.get(position);
+            RecyclerViewItem item = mData.get(position);
             ((ViewHolder1) holder).tvTitle.setText(item.getTitle());
             ((ViewHolder1) holder).channelName.setText(item.getChannelName());
             ((ViewHolder1) holder).uploadDate.setText(item.getUploadDate());
             ((ViewHolder1) holder).viewCount.setText(item.getUploadDate());
+            ((ViewHolder1) holder).timeLine.setText(item.getmTimeline());
 
             Picasso.with(mContext)
                     .load(item.getThumUrl())
@@ -126,7 +134,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     .into( ((ViewHolder1) holder).profileImage);
 
         }else if (holder instanceof ViewHolder2){
-            ListViewItem item = mData.get(position);
+            RecyclerViewItem item = mData.get(position);
             ((ViewHolder2) holder).channelName.setText(item.getChannelName());
             ((ViewHolder2) holder).uploadDate.setText(item.getUploadDate());
             ((ViewHolder2) holder).commentCount.setText(item.getCommentCount()+"");
@@ -139,7 +147,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     .into( ((ViewHolder2) holder).profileImage);
             if(item.getImage().equals(" ")){
                 ((ViewHolder2) holder).image.setVisibility(View.GONE);
+                ((ViewHolder2) holder).thumbIcon.setVisibility(View.GONE);
             }else{
+                ((ViewHolder2) holder).thumbIcon.setVisibility(View.VISIBLE);
                 ((ViewHolder2) holder).image.setVisibility(View.VISIBLE);
                 Picasso.with(mContext)
                         .load(item.getImage())
@@ -149,6 +159,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
         }else if(holder instanceof ViewHolder3){
+            ((ViewHolder3) holder).title.setText("스토리");
             ((ViewHolder3) holder).horizontalAdapter.setRowIndex(position);
         }
     }

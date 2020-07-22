@@ -6,14 +6,35 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/iconBackgroundColor"
-    android:id="@+id/listviewitem_layout"
+    android:id="@+id/recyclerviewitem2_layout"
     tools:ignore="MissingDefaultResource">
-    <ImageView
-        android:id="@+id/iv_listviewitem_video"
-        android:scaleType="fitXY"
-        android:background="@color/defaultImageColor"
-        android:layout_width="match_parent"
-        android:layout_height="205dp"></ImageView>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_recyclerviewitem1_video"
+            android:scaleType="fitXY"
+            android:background="@color/defaultImageColor"
+            android:layout_width="match_parent"
+            android:layout_height="205dp"></ImageView>
+        <TextView
+            android:id="@+id/tv_recyclerviewitem1_timeline"
+            android:paddingStart="@dimen/paddingTimeline"
+            android:paddingEnd="@dimen/paddingTimeline"
+            android:layout_marginEnd="@dimen/marginImage"
+            android:layout_marginBottom="@dimen/marginImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/iconBackgroundColorDark"
+            android:textColor="@color/iconBackgroundColor"
+            android:textSize="@dimen/subTextSize"
+            android:layout_alignBottom="@+id/iv_recyclerviewitem1_video"
+            android:layout_alignEnd="@+id/iv_recyclerviewitem1_video"
+            android:text="11:34">
+        </TextView>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_margin="9dp"
         android:layout_width="match_parent"
@@ -26,7 +47,7 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_listviewitem_profile"
+                android:id="@+id/iv_recyclerviewitem1_profile"
                 android:layout_width="@dimen/profileImage"
                 android:layout_height="@dimen/profileImage"
                 android:src="@drawable/ic_launcher_background" />
@@ -40,7 +61,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_listviewitem_title"
+                android:id="@+id/tv_recyclerviewitem1_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/TitleSize"
@@ -55,7 +76,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_listviewitem_channelName"
+                    android:id="@+id/tv_recyclerviewitem1_channelName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -82,7 +103,7 @@
                     android:textSize="@dimen/subTextSize" />
 
                 <TextView
-                    android:id="@+id/tv_listviewitem_viewCount"
+                    android:id="@+id/tv_recyclerviewitem1_viewCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -101,7 +122,7 @@
                     android:textSize="@dimen/subTextSize" />
 
                 <TextView
-                    android:id="@+id/tv_listviewitem_uploadDate"
+                    android:id="@+id/tv_recyclerviewitem1_uploadDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3일전"
@@ -118,7 +139,7 @@
 
             <ImageButton
                 android:background="#ffffff"
-                android:id="@+id/ib_listviewitem_more"
+                android:id="@+id/ib_recyclerviewitem1_more"
                 android:layout_width="8dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/right_button"

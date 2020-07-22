@@ -5,7 +5,7 @@ import android.provider.MediaStore;
 
 import java.io.Serializable;
 
-public class ListViewItem implements Serializable {
+public class RecyclerViewItem implements Serializable {
     private String mThumUrl;
     private String mTitle;
     private String mChannelName;
@@ -17,10 +17,12 @@ public class ListViewItem implements Serializable {
     private String mThumbUpCount;
     private int mCommentCount;
     private String mProfileImage;
+    private String mTimeline;
 
-    public ListViewItem() {
+    public RecyclerViewItem() {
     }
 
+    public void setTimeline(String timeline){ this.mTimeline = timeline ; }
     public void setThumUrl(String thumUrl) {
         this.mThumUrl = thumUrl ;
     }
@@ -49,6 +51,7 @@ public class ListViewItem implements Serializable {
         this.mProfileImage = mProfileImage;
     }
 
+    public String getmTimeline() { return this.mTimeline; }
     public String getThumUrl() { return this.mThumUrl; }
     public String getTitle() {
         return this.mTitle;

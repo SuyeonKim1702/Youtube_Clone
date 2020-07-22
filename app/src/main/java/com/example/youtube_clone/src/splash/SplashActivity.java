@@ -9,9 +9,9 @@ import com.example.youtube_clone.src.splash.interfaces.MainActivityView;
 import com.example.youtube_clone.src.splash.models.DefaultResponse;
 
 
-public class MainActivity extends BaseActivity implements MainActivityView {
+public class SplashActivity extends BaseActivity implements MainActivityView {
 
-    final MainService mainService = new MainService(this);
+    final SplashService splashService = new SplashService(this);
 
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 
 
     private void tryGetTest() {
-        mainService.getVideoPathAndQuery(1);
+        splashService.getVideoPathAndQuery(1);
     } // 처음 접속 시에는 페이지 1 호출
 
     @Override

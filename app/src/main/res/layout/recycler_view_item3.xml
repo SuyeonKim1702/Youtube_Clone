@@ -1,14 +1,27 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="15dp"
-    android:layout_marginBottom="15dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/iconBackgroundColor">
+
+    <TextView
+        android:layout_marginStart="@dimen/marginTitleStart"
+        android:layout_marginTop ="@dimen/marginTop"
+        android:layout_marginBottom ="@dimen/marginTop"
+        android:textColor="@color/titleColor"
+        android:id="@+id/tv_recyclerviewitem3_story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="스토리"></TextView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/horizontal_list"
+        android:id="@+id/rv_recyclerviewitem3_horizontalRv"
+        android:layout_marginBottom = "@dimen/marginRecylerView"
+        android:layout_marginEnd="@dimen/marginRecylerView"
+        android:layout_marginStart="@dimen/marginRecylerView"
+        android:layout_below="@id/tv_recyclerviewitem3_story"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:visibility="visible" />
 
 </RelativeLayout>

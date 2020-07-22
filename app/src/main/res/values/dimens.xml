@@ -13,12 +13,21 @@
     <dimen name="TitleSize">13sp</dimen>
     <dimen name="subTextSize">10sp</dimen>
     <dimen name="margin"> 9dp</dimen>
+    <dimen name="marginImage">7dp</dimen>
+    <dimen name="paddingTimeline">3dp</dimen>
 
     <!-- recycler_view_item2 -->
     <dimen name="TitleSize2">13sp</dimen>
     <dimen name="marginTop"> 9dp</dimen>
-    <dimen name="marginBottom">8dp</dimen>
+    <dimen name="marginBottom">10dp</dimen>
     <dimen name="marginBottomUpDown">12dp</dimen>
+
+    <!--  recycler_view_item3 -->
+    <dimen name="marginTitleStart">20sp</dimen>
+    <dimen name="marginTitleTop">10sp</dimen>
+    <dimen name="marginRecylerView">13sp</dimen>
+    <dimen name="storyProfileImage">40dp</dimen>
+
 
 
 </resources>

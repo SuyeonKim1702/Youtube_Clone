@@ -7,8 +7,10 @@
     <color name="titleColor">#515151</color>
     <color name="subTextColor">#6b6b6b</color>
     <color name="toolBarColor">#ffffff</color>
+    <color name="storyChannelNameColor">#ffffff</color>
     <color name="defaultImageColor">#dbdbdb</color>
     <color name="postingViewColor">#dadada</color>
     <color name="contentColor">#515151</color>
+    <color name="iconBackgroundColorDark">#000000</color>
 
 </resources>

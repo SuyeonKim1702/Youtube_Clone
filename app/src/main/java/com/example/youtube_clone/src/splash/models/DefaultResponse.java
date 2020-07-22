@@ -17,12 +17,19 @@ public class DefaultResponse implements Serializable {
         @SerializedName("community")
         Community[] community;
 
+        @SerializedName("storyVideo")
+        Story[] story;
+
         public Video[] getVideo() {
             return video;
         }
 
         public Community[] getCommunity() {
             return community;
+        }
+
+        public Story[] getstory() {
+            return story;
         }
 
 
@@ -69,6 +76,29 @@ public class DefaultResponse implements Serializable {
 
     }
 
+    public class Story implements Serializable{
+
+        @SerializedName("UserId")
+        private String channelName;
+        @SerializedName("ProfileUrl")
+        private String profileUrl;
+        @SerializedName("ThumUrl")
+        private String thumUrl;
+        //추가해줄 것
+
+        public String getChannelName() { return channelName; }
+
+        public String getThumbUrl() {
+            return thumUrl;
+        }
+        public String getProfileUrl() {
+            return profileUrl;
+        }
+
+
+
+    }
+
 
     public class Video implements Serializable{
         @SerializedName("TitleText")
@@ -83,6 +113,8 @@ public class DefaultResponse implements Serializable {
         private String profileUrl;
         @SerializedName("CreateAt")
         private String createAt;
+        @SerializedName("PlayTime")
+        private String playTime;
 
         public String getTitle() {
             return titleText;
@@ -102,18 +134,15 @@ public class DefaultResponse implements Serializable {
         public String getProfileUrl() {
             return profileUrl;
         }
+        public String getPlayTime() {
+            return playTime;
+        }
 
     }
 
     @SerializedName("result")
     private Result result;
 
-    @SerializedName("message")
-    private String message;
-
-    public String getMessage() {
-        return message;
-    }
     public Result getResult() { return result;}
 
 

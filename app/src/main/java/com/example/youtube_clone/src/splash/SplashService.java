@@ -10,10 +10,10 @@ import retrofit2.Response;
 
 import static com.example.youtube_clone.src.ApplicationClass.getRetrofit;
 
-class MainService {
+class SplashService {
     private final MainActivityView mMainActivityView;
 
-    MainService(final MainActivityView mainActivityView) {
+    SplashService(final MainActivityView mainActivityView) {
         this.mMainActivityView = mainActivityView;
     }
 
