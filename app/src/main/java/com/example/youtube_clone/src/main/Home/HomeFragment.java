@@ -1,5 +1,6 @@
 package com.example.youtube_clone.src.main.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.youtube_clone.R;
+import com.example.youtube_clone.src.detail.DetailActivity;
 import com.example.youtube_clone.src.main.Home.interfaces.MainActivityView;
 import com.example.youtube_clone.src.main.MainActivity;
 import com.example.youtube_clone.src.main.RecyclerViewItem;
@@ -48,7 +50,7 @@ public class HomeFragment extends Fragment implements MainActivityView {
             mRecyclerView.scrollToPosition(0);
             for (DefaultResponse.Video r : result.getVideo())
                 addItem(r.getPlayTime(),r.getTitle(), r.getChannelName(), r.getViewCount(), r.getCreateAt(), r.getThumUrl(), r.getProfileUrl(),0);
-           // mAdapter.notifyDataSetChanged();
+            // mAdapter.notifyDataSetChanged();
             for (DefaultResponse.Community c : result.getCommunity())
                 addItem(c.getChannelName(), c.getCommentCount(), c.getCreateAt(), c.getImgUrl(),c.getLikesCount(),c.getMainText(),c.getProfileUrl(), 1);
             if(result.getstory() != null)
@@ -57,33 +59,46 @@ public class HomeFragment extends Fragment implements MainActivityView {
             //mRecyclerView.scrollToPosition(0);
         }
 
+        mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                // TODO : 아이템 클릭 이벤트를 MainActivity에서 처리.
+                Intent intent = new Intent(getContext(), DetailActivity.class);
+                startActivity(intent);
+
+            }
+        }) ;
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-           @Override
-           public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-               super.onScrollStateChanged(recyclerView, newState);
-           }
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
 
-           @Override
-           public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-               super.onScrolled(recyclerView, dx, dy);
-               //페이징 처리
-               if (dy > 0) {
-                   // 아래로
-                   int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                   int totalCount = recyclerView.getAdapter().getItemCount();
-                   int diff = totalCount - lastPosition;
-                   if(diff <= 4){
-                       pageNum++;
-                       tryGetTest(pageNum);
-                   }
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                //페이징 처리
+                if (dy > 0) {
+                    // 아래로
+                    int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                    int totalCount = recyclerView.getAdapter().getItemCount();
+                    int diff = totalCount - lastPosition;
+                    if(diff <= 4){
+                        pageNum++;
+                        tryGetTest(pageNum);
+                    }
 
-               }
-           }
-       });
+                }
+            }
+        });
 
         return mView;
     }
+
+
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -148,7 +163,7 @@ public class HomeFragment extends Fragment implements MainActivityView {
             mHorizontalList.add(item);
         }
         RecyclerViewItem item2 = new RecyclerViewItem();
-        item2.setType(3);
+        item2.setType(2);
         mList.add(item2); //한번만 add -> 스토리 영상 여러개를 하나로 인식
 
     }
@@ -164,7 +179,7 @@ public class HomeFragment extends Fragment implements MainActivityView {
         }
 
         RecyclerViewItem item2 = new RecyclerViewItem();
-        item2.setType(3);
+        item2.setType(2);
         mList.add(item2); //한번만 add -> 스토리 영상 여러개를 하나로 인식
 
     }

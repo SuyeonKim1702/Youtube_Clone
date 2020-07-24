@@ -71,6 +71,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
             }
         });
 
+
     }
 
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
@@ -131,7 +132,6 @@ public class MainActivity extends BaseActivity implements MainActivityView {
     @Override
     public void signInSuccess(SignInResponse.SignInResult signInResult){
         hideProgressDialog();
-        //하고 싶은 기능 넣기 ex) getJwt ..
     }
 
     }

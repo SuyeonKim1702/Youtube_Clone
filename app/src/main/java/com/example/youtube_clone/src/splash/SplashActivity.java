@@ -1,4 +1,4 @@
-package com.example.youtube_clone.src.splash;
+package com.example.youtube_clone.src.splash; //
 
 import android.content.Intent;
 import android.os.Bundle;

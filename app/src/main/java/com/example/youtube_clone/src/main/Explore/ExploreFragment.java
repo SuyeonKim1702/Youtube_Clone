@@ -14,5 +14,9 @@ import com.example.youtube_clone.R;
 public class ExploreFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_explore, container, false);
+
+
+
+
     }
 }

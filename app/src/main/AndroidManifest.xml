@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".src.main.MainActivity"></activity>
         <activity android:name=".src.account.AccountActivity"></activity>
+        <activity android:name=".src.detail.DetailActivity"></activity>
 
     </application>
 

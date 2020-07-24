@@ -4,7 +4,9 @@ import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
 
 import java.io.Serializable;
-
+//
+//상속 이용해서 변경 -> video, story ...
+//서버에서 받아온 데이터를그대로 넣을 수 있음 -> 템플릿 잘못쓴 부분
 public class RecyclerViewItem implements Serializable {
     private String mThumUrl;
     private String mTitle;

@@ -28,6 +28,8 @@
     <dimen name="marginRecylerView">13sp</dimen>
     <dimen name="storyProfileImage">40dp</dimen>
 
+    <!--  detail -->
+
 
 
 </resources>

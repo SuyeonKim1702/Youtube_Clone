@@ -1,3 +1,4 @@
+
 package com.example.youtube_clone.src.main.Home;
 
 import android.content.Context;
@@ -36,18 +37,18 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-           storyImage = itemView.findViewById(R.id.iv_inner_storyImage);
-           storyImage.setClipToOutline(true);
-           profileImage = itemView.findViewById(R.id.iv_inner_profileImage);
-           profileImage.setClipToOutline(true);
-           channelName = itemView.findViewById(R.id.tv_inner_channelName);
+            storyImage = itemView.findViewById(R.id.iv_inner_storyImage);
+            storyImage.setClipToOutline(true);
+            profileImage = itemView.findViewById(R.id.iv_inner_profileImage);
+            profileImage.setClipToOutline(true);
+            channelName = itemView.findViewById(R.id.tv_inner_channelName);
 
         }
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-         context = parent.getContext();
+        context = parent.getContext();
         View itemView = LayoutInflater.from(context).inflate(R.layout.inner_recycler_view_item, parent, false);
         ItemViewHolder holder = new ItemViewHolder(itemView);
         return holder;
@@ -58,7 +59,6 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
     public void onBindViewHolder(RecyclerView.ViewHolder rawHolder, int position) {
         ItemViewHolder holder = (ItemViewHolder) rawHolder;
         RecyclerViewItem item = mDataList.get(position);
-        System.out.println(position+"입니다");
         holder.channelName.setText(item.getChannelName());
 
         Picasso.with(context)

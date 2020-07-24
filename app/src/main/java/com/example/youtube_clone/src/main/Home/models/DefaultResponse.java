@@ -52,11 +52,7 @@ public class DefaultResponse implements Serializable {
             return profileUrl;
         }
 
-
-
     }
-
-
 
     public class Community implements Serializable{
 

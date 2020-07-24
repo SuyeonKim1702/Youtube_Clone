@@ -17,7 +17,7 @@
             android:scaleType="fitXY"
             android:background="@color/defaultImageColor"
             android:layout_width="match_parent"
-            android:layout_height="205dp"></ImageView>
+            android:layout_height="215dp"></ImageView>
         <TextView
             android:id="@+id/tv_recyclerviewitem1_timeline"
             android:paddingStart="@dimen/paddingTimeline"

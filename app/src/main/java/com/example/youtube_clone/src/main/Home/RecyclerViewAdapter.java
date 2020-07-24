@@ -23,6 +23,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private ArrayList<RecyclerViewItem> mHorizontalData = null ;
     private static Context mContext;
 
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position) ;
+    }
+
+    private OnItemClickListener mListener = null ;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener ;
+    }
+
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder1 extends RecyclerView.ViewHolder {
         TextView tvTitle,channelName,uploadDate,viewCount,timeLine;
@@ -38,6 +49,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             thumbNail = v.findViewById(R.id.iv_recyclerviewitem1_video);
             profileImage = v.findViewById(R.id.iv_recyclerviewitem1_profile);
             timeLine = v.findViewById(R.id.tv_recyclerviewitem1_timeline);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition() ;
+                    if (pos != RecyclerView.NO_POSITION) {
+                        // 리스너 객체의 메서드 호출.
+                        if (mListener != null) {
+                            mListener.onItemClick(v, pos) ;
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -102,7 +126,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             return vh ;
 
-        }else if(viewType == 3){
+        }else if(viewType == 2){
             View view = inflater.inflate(R.layout.recycler_view_item3, parent, false) ;
             RecyclerViewAdapter.ViewHolder3 vh = new RecyclerViewAdapter.ViewHolder3(view) ;
 
