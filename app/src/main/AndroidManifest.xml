@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
+        android:windowSoftInputMode="adjustPan|adjustResize|stateVisible"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:fullBackupContent="false"
@@ -12,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
         tools:ignore="GoogleAppIndexingWarning"
 
         tools:targetApi="n">
@@ -26,7 +28,8 @@
         </activity>
         <activity android:name=".src.main.MainActivity"></activity>
         <activity android:name=".src.account.AccountActivity"></activity>
-        <activity android:name=".src.detail.DetailActivity"></activity>
+        <activity android:name=".src.detail.DetailActivity"
+                  android:windowSoftInputMode="adjustPan|adjustResize|stateVisible"></activity>
 
     </application>
 

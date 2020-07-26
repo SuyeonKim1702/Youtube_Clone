@@ -29,7 +29,7 @@
     <dimen name="storyProfileImage">40dp</dimen>
 
     <!--  detail -->
-
+    <dimen name="subTextSize2">11dp</dimen>
 
 
 </resources>

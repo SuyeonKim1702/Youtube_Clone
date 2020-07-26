@@ -1,0 +1,180 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#ebebeb">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_listview1_profile"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src="@drawable/ic_launcher_background" />
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_marginStart="13dp"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_listView1_channelName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="마리마리"
+                    android:textColor="@color/subTextColor"
+                    android:textSize="@dimen/subTextSize2" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:singleLine="true"
+                    android:text="@string/dot"
+                    android:textStyle="bold"
+                    android:textColor="@color/subTextColor"
+                    android:textSize="@dimen/subTextSize2" />
+
+                <TextView
+                    android:id="@+id/tv_listView1_upload_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1주 전"
+                    android:textColor="@color/subTextColor"
+                    android:textSize="@dimen/subTextSize2" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="3dp"
+                android:id="@+id/tv_listview1_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/TitleSize"
+                android:textColor="@color/titleColor"
+                android:text="마리텔 저거는 2단계가 아니라 4단계쯤 둬야될거 같은데ㅋㅋㅋㅋㅋ 겁나 웃겨" />
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/ib_listview1_thumbUp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:scaleType="centerInside"
+                    android:background="#ebebeb"
+                    android:src="@drawable/ic_thumb_up_alt"></ImageButton>
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:id="@+id/tv_listView1_thumbUpCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="74"
+                    android:textSize="@dimen/subTextSize2"></TextView>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                </View>
+                <ImageButton
+                    android:id="@+id/ib_listview1_thumbDown"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:scaleType="centerInside"
+                    android:background="#ebebeb"
+                    android:src="@drawable/ic_thumb_down_alt"></ImageButton>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"></View>
+                <ImageButton
+                    android:id="@+id/ib_listview1_comment"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:scaleType="centerInside"
+                    android:background="#ebebeb"
+                    android:src="@drawable/ic_comment2"></ImageButton>
+
+                <TextView
+                    android:id="@+id/tv_listView1_commentCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:layout_marginStart="7dp"
+                    android:textSize="@dimen/subTextSize2"></TextView>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"></View>.
+                <ImageButton
+                    android:id="@+id/ib_listview1_more"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:scaleType="centerInside"
+                    android:background="#ebebeb"
+                    android:src="@drawable/right_button"></ImageButton>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="20dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_header2_profile"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <EditText
+            android:background="@android:color/transparent"
+            android:textSize="12dp"
+            android:layout_marginStart="15dp"
+            android:id="@+id/et_header2_comment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:hint="공개 답글 추가...">
+
+        </EditText>
+        <ImageButton
+            android:visibility="invisible"
+            android:id="@+id/bt_header2_send"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/iconBackgroundColor"
+            android:src="@drawable/ic_send"></ImageButton>
+
+    </LinearLayout>
+    </LinearLayout>

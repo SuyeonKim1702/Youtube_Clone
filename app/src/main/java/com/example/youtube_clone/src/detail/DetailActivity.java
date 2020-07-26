@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,9 +18,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.youtube_clone.R;
 import com.example.youtube_clone.src.BaseActivity;
 import com.example.youtube_clone.src.account.AccountActivity;
+import com.example.youtube_clone.src.main.Inbox.InboxFragment;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -36,9 +43,11 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
 
     private PlayerView exoPlayerView;
     private SimpleExoPlayer player;
-
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private DetailDefaultFragment defaultFragment = new DetailDefaultFragment();
+    private DetailComment1Fragment comment1Fragment = new DetailComment1Fragment();
     private Boolean playWhenReady = true;
-    LinearLayout commentLinear;
+    static InputMethodManager imm;
     private int currentWindow = 0;
     private Long playbackPosition = 0L;
     private static Handler timeHandler;
@@ -50,7 +59,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        commentLinear = findViewById(R.id.ll_detail_comment);
+        imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         exoPlayerView = findViewById(R.id.exo_detail_exoplayer);
         TextView currentTime = findViewById(R.id.exo_position);
         TextView durationTime = findViewById(R.id.exo_duration);
@@ -63,11 +72,16 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         tb.hideScrubber();
         String total = "01:58"; // 서버에서 받아온 값 넣기
         String[] tokens = total.split(":");
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.frame_detail_fragment, defaultFragment.newInstance()).commit();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
 
         int secondsToMs = Integer.parseInt(tokens[1]) * 1000;
         int minutesToMs = Integer.parseInt(tokens[0]) * 60000;
         long total2 = secondsToMs + minutesToMs;
-        commentLinear.setOnClickListener(this);
+
 
         timeHandler = new Handler() {
 
@@ -194,20 +208,25 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                 .createMediaSource(uri);
     }
 
+    public void replaceFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_detail_fragment, fragment).addToBackStack(null).commit();
+    }
 
+    public void removeFragment(Fragment fragment) {
+        fragmentManager.beginTransaction().remove(fragment).commit();
+        fragmentManager.popBackStack();
+    }
+
+    public void removeFragment() {
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
 
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.ll_detail_comment :
-
-                Toast.makeText(DetailActivity.this, "야야야야야", Toast.LENGTH_SHORT).show();
-                BottomSheetDialogFragment bottomSheet = new BottomSheetDialogFragment();
-                bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
-
-               break;
 
 
         }
