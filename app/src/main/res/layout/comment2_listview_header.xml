@@ -15,7 +15,7 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_listview1_profile"
+                android:id="@+id/iv_listview_profile"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:src="@drawable/ic_launcher_background" />
@@ -33,10 +33,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/tv_listView1_channelName"
+                    android:id="@+id/tv_header2_channelName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="마리마리"
+                    android:text="td1702"
                     android:textColor="@color/subTextColor"
                     android:textSize="@dimen/subTextSize2" />
 
@@ -53,7 +53,7 @@
                     android:textSize="@dimen/subTextSize2" />
 
                 <TextView
-                    android:id="@+id/tv_listView1_upload_date"
+                    android:id="@+id/tv_header2_upload_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1주 전"
@@ -65,12 +65,12 @@
 
             <TextView
                 android:layout_marginTop="3dp"
-                android:id="@+id/tv_listview1_content"
+                android:id="@+id/tv_header2_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/TitleSize"
                 android:textColor="@color/titleColor"
-                android:text="마리텔 저거는 2단계가 아니라 4단계쯤 둬야될거 같은데ㅋㅋㅋㅋㅋ 겁나 웃겨" />
+                android:text="테스트 댓글 테스트 댓글" />
             <LinearLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
@@ -87,7 +87,7 @@
 
                 <TextView
                     android:layout_marginStart="7dp"
-                    android:id="@+id/tv_listView1_thumbUpCount"
+                    android:id="@+id/tv_header2_thumbUpCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="74"
@@ -117,7 +117,7 @@
                     android:src="@drawable/ic_comment2"></ImageButton>
 
                 <TextView
-                    android:id="@+id/tv_listView1_commentCount"
+                    android:id="@+id/tv_header2_commentCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2"

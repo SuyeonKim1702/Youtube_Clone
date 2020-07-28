@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.youtube_clone.R;
+import com.example.youtube_clone.src.account.interfaces.AccountActivityView;
+import com.example.youtube_clone.src.account.models.PostIdTokenResponse;
+import com.example.youtube_clone.src.detail.interfaces.DetailActivityView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,7 +28,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class AccountActivity extends AppCompatActivity {
+import static com.example.youtube_clone.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.example.youtube_clone.src.ApplicationClass.sSharedPreferences;
+
+public class AccountActivity extends AppCompatActivity implements AccountActivityView {
 
     private static final int RC_SIGN_IN = 1;
     Button logIn;
@@ -84,6 +91,8 @@ public class AccountActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("msg", "signInWithCredential:success");
 
+                            AccountService.postIdToken(idToken);
+                            //서버에 토큰 아이디 전달 -> service에서 전달해주기!
 
                             //updateUI(user);
                         } else {
@@ -118,4 +127,15 @@ public class AccountActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void validateSuccess(PostIdTokenResponse result) {
+        //여기서 jwt 저장
+        //sSharedPreferences.edit().putString(X_ACCESS_TOKEN, "sfhkjsdahfkljshkjsagklshfklakjsfhkjsakf").apply();
+    }
+
+    @Override
+    public void validateFailure(String message) {
+        Toast.makeText(this, "jwt를 받아오지 못했습니다", Toast.LENGTH_SHORT).show();
+
+    }
 }

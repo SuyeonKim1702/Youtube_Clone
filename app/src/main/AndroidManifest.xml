@@ -4,6 +4,7 @@
     package="com.example.youtube_clone">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name="com.example.youtube_clone.src.ApplicationClass"
         android:allowBackup="true"
         android:windowSoftInputMode="adjustPan|adjustResize|stateVisible"
         android:icon="@mipmap/ic_launcher"

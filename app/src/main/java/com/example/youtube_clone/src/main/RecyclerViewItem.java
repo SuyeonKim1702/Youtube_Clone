@@ -20,6 +20,7 @@ public class RecyclerViewItem implements Serializable {
     private int mCommentCount;
     private String mProfileImage;
     private String mTimeline;
+    private int mVideoIndex;
 
     public RecyclerViewItem() {
     }
@@ -52,6 +53,9 @@ public class RecyclerViewItem implements Serializable {
     public void setProfileImage(String mProfileImage) {
         this.mProfileImage = mProfileImage;
     }
+    public void setVideoIndex(int mVideoIndex) {
+        this.mVideoIndex = mVideoIndex;
+    }
 
     public String getmTimeline() { return this.mTimeline; }
     public String getThumUrl() { return this.mThumUrl; }
@@ -75,5 +79,10 @@ public class RecyclerViewItem implements Serializable {
     public String getThumbUpCount() { return mThumbUpCount; }
     public int getCommentCount() { return mCommentCount; }
     public String getProfileImage() { return mProfileImage; }
+    public int getVideoIndex() {
+        return mVideoIndex;
+    }
+
+
 
 }

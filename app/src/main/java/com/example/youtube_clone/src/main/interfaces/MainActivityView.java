@@ -8,5 +8,4 @@ public interface MainActivityView {
 
     void validateFailure(String message);
 
-    void signInSuccess(SignInResponse.SignInResult signInResult);
 }

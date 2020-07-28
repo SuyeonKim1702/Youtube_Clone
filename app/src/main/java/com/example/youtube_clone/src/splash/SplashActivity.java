@@ -1,5 +1,6 @@
 package com.example.youtube_clone.src.splash; //
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -7,6 +8,9 @@ import com.example.youtube_clone.R;
 import com.example.youtube_clone.src.BaseActivity;
 import com.example.youtube_clone.src.splash.interfaces.MainActivityView;
 import com.example.youtube_clone.src.splash.models.DefaultResponse;
+import static com.example.youtube_clone.src.ApplicationClass.TAG;
+import static com.example.youtube_clone.src.ApplicationClass.sSharedPreferences;
+
 
 
 public class SplashActivity extends BaseActivity implements MainActivityView {
@@ -17,10 +21,9 @@ public class SplashActivity extends BaseActivity implements MainActivityView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         tryGetTest();
     }
-
-
 
     private void tryGetTest() {
         splashService.getVideoPathAndQuery(1);

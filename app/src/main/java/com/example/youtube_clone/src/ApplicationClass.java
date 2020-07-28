@@ -3,6 +3,7 @@ package com.example.youtube_clone.src;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.example.youtube_clone.config.XAccessTokenInterceptor;
 
@@ -44,7 +45,9 @@ public class ApplicationClass extends Application {
 
         if (sSharedPreferences == null) {
             sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
+
         }
+
     }
 
     public static Retrofit getRetrofit() {
@@ -52,7 +55,7 @@ public class ApplicationClass extends Application {
             OkHttpClient client = new OkHttpClient.Builder()
                     .readTimeout(5000, TimeUnit.MILLISECONDS)
                     .connectTimeout(5000, TimeUnit.MILLISECONDS)
-                    //.addNetworkInterceptor(new XAccessTokenInterceptor()) // JWT 자동 헤더 전송
+                    .addNetworkInterceptor(new XAccessTokenInterceptor()) // JWT 자동 헤더 전송
                     .build();
 
             retrofit = new Retrofit.Builder()
@@ -64,4 +67,6 @@ public class ApplicationClass extends Application {
 
         return retrofit;
     }
+
+
 }

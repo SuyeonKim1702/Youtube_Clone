@@ -16,7 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.youtube_clone.R;
 import com.example.youtube_clone.src.detail.DetailActivity;
 import com.example.youtube_clone.src.main.Home.interfaces.MainActivityView;
-import com.example.youtube_clone.src.main.MainActivity;
+import com.example.youtube_clone.src.main.Home.models.StoryResponse;
 import com.example.youtube_clone.src.main.RecyclerViewItem;
 import com.example.youtube_clone.src.splash.models.DefaultResponse;
 
@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment implements MainActivityView {
     View mView;
     int pageNum = 1;
 
-    final MainService mainService = new MainService(this);
+    final HomeService mainService = new HomeService(this);
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Bundle bundle = this.getArguments();
@@ -49,14 +49,9 @@ public class HomeFragment extends Fragment implements MainActivityView {
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.scrollToPosition(0);
             for (DefaultResponse.Video r : result.getVideo())
-                addItem(r.getPlayTime(),r.getTitle(), r.getChannelName(), r.getViewCount(), r.getCreateAt(), r.getThumUrl(), r.getProfileUrl(),0);
-            // mAdapter.notifyDataSetChanged();
-            for (DefaultResponse.Community c : result.getCommunity())
-                addItem(c.getChannelName(), c.getCommentCount(), c.getCreateAt(), c.getImgUrl(),c.getLikesCount(),c.getMainText(),c.getProfileUrl(), 1);
-            if(result.getstory() != null)
-                addItem(result.getstory());
+                addItem(r.getPlayTime(),r.getTitle(), r.getChannelName(), r.getViewCount(), r.getCreateAt(), r.getThumUrl(), r.getProfileUrl(),r.getVideoIndex(),0);
             mAdapter.notifyDataSetChanged();
-            //mRecyclerView.scrollToPosition(0);
+
         }
 
         mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
@@ -64,7 +59,10 @@ public class HomeFragment extends Fragment implements MainActivityView {
             public void onItemClick(View v, int position) {
                 // TODO : 아이템 클릭 이벤트를 MainActivity에서 처리.
                 Intent intent = new Intent(getContext(), DetailActivity.class);
+                intent.putExtra("videoIndex",mList.get(position).getVideoIndex());
+                intent.putExtra("runTime",mList.get(position).getmTimeline());
                 startActivity(intent);
+
 
             }
         }) ;
@@ -97,9 +95,6 @@ public class HomeFragment extends Fragment implements MainActivityView {
     }
 
 
-
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,13 +110,13 @@ public class HomeFragment extends Fragment implements MainActivityView {
             @Override
             public void onRefresh() {
                 tryGetTest(1); //새로고침
-                //mSwipeRefreshLayout.setRefreshing(false);
+
             }
         });
 
     }
 
-    public void addItem(String timeLine, String title, String channelName, String viewCount, String uploadDate, String imageUrl, String profileImage, int type) {
+    public void addItem(String timeLine, String title, String channelName, String viewCount, String uploadDate, String imageUrl, String profileImage, int index, int type) {
         RecyclerViewItem item = new RecyclerViewItem();
         item.setTimeline(timeLine);
         item.setTitle(title);
@@ -130,6 +125,7 @@ public class HomeFragment extends Fragment implements MainActivityView {
         item.setViewCount(viewCount);
         item.setThumUrl(imageUrl);
         item.setType(type);
+        item.setVideoIndex(index);
         item.setProfileImage(profileImage);
 
         mList.add(item);
@@ -147,37 +143,22 @@ public class HomeFragment extends Fragment implements MainActivityView {
         item.setContentText(content);
         item.setType(type);
         item.setProfileImage(profileImage);
-        int iValue = (int)(Math.random() * 8 + 1);
-        mList.add(mList.size()-iValue,item);
+        //int iValue = (int)(Math.random() * 8 + 1);
+      //  mList.add(mList.size()-iValue,item);
+        mList.add(item);
 
 
     }
 
-    public void addItem(DefaultResponse.Story[] story){
+    public void addItem(StoryResponse.Story[] story){
         removeAll(mHorizontalList);
-        for(DefaultResponse.Story s :story){
+        for(StoryResponse.Story s :story){
             RecyclerViewItem item = new RecyclerViewItem();
             item.setChannelName(s.getChannelName());
             item.setProfileImage(s.getProfileUrl());
             item.setThumUrl(s.getThumbUrl());
             mHorizontalList.add(item);
         }
-        RecyclerViewItem item2 = new RecyclerViewItem();
-        item2.setType(2);
-        mList.add(item2); //한번만 add -> 스토리 영상 여러개를 하나로 인식
-
-    }
-
-    public void addItem(com.example.youtube_clone.src.main.Home.models.DefaultResponse.Story[] story){
-        removeAll(mHorizontalList);
-        for(com.example.youtube_clone.src.main.Home.models.DefaultResponse.Story s :story){
-            RecyclerViewItem item = new RecyclerViewItem();
-            item.setChannelName(s.getChannelName());
-            item.setProfileImage(s.getProfileUrl());
-            item.setThumUrl(s.getThumbUrl());
-            mHorizontalList.add(item);
-        }
-
         RecyclerViewItem item2 = new RecyclerViewItem();
         item2.setType(2);
         mList.add(item2); //한번만 add -> 스토리 영상 여러개를 하나로 인식
@@ -191,7 +172,9 @@ public class HomeFragment extends Fragment implements MainActivityView {
         List.removeAll(List);
     }
     private void tryGetTest(int pageNum) {
-        mainService.getVideoPathAndQuery(pageNum);
+        if(pageNum%3 == 1) mainService.getVideoPathAndQuery(pageNum);
+       else if(pageNum%3 == 0) mainService.getCommunityPathAndQuery(pageNum);
+        else mainService.getStoryPathAndQuery(pageNum);
     }
 
     @Override
@@ -199,24 +182,35 @@ public class HomeFragment extends Fragment implements MainActivityView {
         if(pageNum == 1){ //새로고침
             removeAll(mList); //기존 리스트를 다 지우고
             for (com.example.youtube_clone.src.main.Home.models.DefaultResponse.Video r : result.getVideo())
-                addItem(r.getPlayTime(),r.getTitle(), r.getChannelName(), r.getViewCount(), r.getCreateAt(), r.getThumUrl(), r.getProfileUrl(),0);
-            for (com.example.youtube_clone.src.main.Home.models.DefaultResponse.Community c : result.getCommunity())
-                addItem(c.getChannelName(), c.getCommentCount(), c.getCreateAt(), c.getImgUrl(),c.getLikesCount(),c.getMainText(),c.getProfileUrl(), 1);
-            if(result.getstory() != null) addItem(result.getstory());
-
+                addItem(r.getPlayTime(),r.getTitle(), r.getChannelName(), r.getViewCount(), r.getCreateAt(), r.getThumUrl(), r.getProfileUrl(),r.getVideoIndex(),0);
             mAdapter.notifyDataSetChanged();
             mSwipeRefreshLayout.setRefreshing(false); // 새로고침 중지
 
         }else{
             for (com.example.youtube_clone.src.main.Home.models.DefaultResponse.Video r : result.getVideo())
-                addItem(r.getPlayTime(),r.getTitle(), r.getChannelName(), r.getViewCount(), r.getCreateAt(), r.getThumUrl(), r.getProfileUrl(),0);
-            for (com.example.youtube_clone.src.main.Home.models.DefaultResponse.Community c : result.getCommunity())
-                addItem(c.getChannelName(), c.getCommentCount(), c.getCreateAt(), c.getImgUrl(),c.getLikesCount(),c.getMainText(),c.getProfileUrl(), 1);
-            if(result.getstory() != null) addItem(result.getstory());
-            mAdapter.notifyDataSetChanged();
+                addItem(r.getPlayTime(),r.getTitle(), r.getChannelName(), r.getViewCount(), r.getCreateAt(), r.getThumUrl(), r.getProfileUrl(),r.getVideoIndex(),0);
+                mAdapter.notifyDataSetChanged();
         }
 
     }
+
+    @Override
+    public void validateSuccess(com.example.youtube_clone.src.main.Home.models.CommunityResponse.Result result, int pageNum) {
+
+            for (com.example.youtube_clone.src.main.Home.models.CommunityResponse.Community c : result.getCommunity())
+                addItem(c.getChannelName(), c.getCommentCount(), c.getCreateAt(), c.getImgUrl(),c.getLikesCount(),c.getMainText(),c.getProfileUrl(), 1);
+            mAdapter.notifyDataSetChanged();
+        }
+
+
+    @Override
+    public void validateSuccess(com.example.youtube_clone.src.main.Home.models.StoryResponse.Result result, int pageNum) {
+
+            addItem(result.getStory());
+            mAdapter.notifyDataSetChanged();
+    }
+
+
 
     @Override
     public void validateFailure(String message) {

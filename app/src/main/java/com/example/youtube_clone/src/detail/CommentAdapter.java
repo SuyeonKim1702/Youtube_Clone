@@ -15,7 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.youtube_clone.R;
-import com.example.youtube_clone.src.main.Home.RecyclerViewAdapter;
+import com.example.youtube_clone.src.detail.Comment1Fragment.DetailComment1Fragment;
+import com.example.youtube_clone.src.detail.Comment1Fragment.DetailComment1Service;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class CommentAdapter extends BaseAdapter {
     static Context mContext;
     int newstate;
 
-    CommentAdapter(ArrayList<Comment> data, Context context){
+    public CommentAdapter(ArrayList<Comment> data, Context context){
         mCommentList = data; // 글 목록 리스트를 불러옴
         mInflate= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -194,9 +195,9 @@ public class CommentAdapter extends BaseAdapter {
 
                                 break;
                             case R.id.popup_item_delete:
-
+                               //Toast.makeText(mContext, mCommentList.get(position).getmVideoIdx()+"", Toast.LENGTH_SHORT).show();
+                                DetailComment1Service.deleteComment(mCommentList.get(position).getmVideoIdx(),mCommentList.get(position).getmCommentIdx());
                                 DetailComment1Fragment.mCommentList.remove(position);
-                                //서버에서 삭제 처리
                                 notifyDataSetChanged();
                                 break;
                         }

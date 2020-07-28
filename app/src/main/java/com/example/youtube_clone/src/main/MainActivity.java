@@ -48,12 +48,12 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         Intent intent = getIntent();
         DefaultResponse.Result result = (DefaultResponse.Result) intent.getSerializableExtra("result");
 
-        toolbar = (Toolbar)findViewById(R.id.toolBar);
+        toolbar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("result",result);
-        bundle.putInt("check",1);
+        bundle.putSerializable("result", result);
+        bundle.putInt("check", 1);
         prePos = 1;
         fragmentHome.setArguments(bundle);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -74,22 +74,21 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 
     }
 
-    class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
+    class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-            switch(menuItem.getItemId())
-            {
+            switch (menuItem.getItemId()) {
                 case R.id.menu_item_home:
-                    if(prePos == 1) {
+                    if (prePos == 1) {
                         HomeFragment.moveToFirst();
                         toolbar.setElevation(50f);
 
                     }
                     prePos = 1;
                     Bundle bundle = new Bundle();
-                    bundle.putInt("check",0);
+                    bundle.putInt("check", 0);
                     fragmentHome.setArguments(bundle);
                     transaction.replace(R.id.frameLayout, fragmentHome).commitAllowingStateLoss();
                     break;
@@ -110,11 +109,10 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                     prePos = 5;
                     break;
             }
-           // bottomNavigationView.setItemIconSize(18);
+            // bottomNavigationView.setItemIconSize(18);
             return true;
         }
     }
-
 
 
     @Override
@@ -129,10 +127,5 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         showCustomToast(message == null || message.isEmpty() ? getString(R.string.network_error) : message);
     }
 
-    @Override
-    public void signInSuccess(SignInResponse.SignInResult signInResult){
-        hideProgressDialog();
-    }
-
-    }
+}
 

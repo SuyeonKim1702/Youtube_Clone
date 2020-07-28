@@ -3,6 +3,7 @@
     <string name="loading">로딩중입니다.</string>
     <string name="confirm">확인</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
+    <string name="detail_info_error"> 비디오 상세 정보를 불러오지 못했습니다.</string>
     <string name="positive">네</string>
     <string name="negative">아니오</string>
     <string name="dot">  ·  </string>

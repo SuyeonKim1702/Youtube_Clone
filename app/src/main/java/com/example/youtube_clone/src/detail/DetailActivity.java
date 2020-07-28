@@ -12,22 +12,21 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.youtube_clone.R;
 import com.example.youtube_clone.src.BaseActivity;
-import com.example.youtube_clone.src.account.AccountActivity;
-import com.example.youtube_clone.src.main.Inbox.InboxFragment;
+import com.example.youtube_clone.src.detail.Comment1Fragment.DetailComment1Fragment;
+import com.example.youtube_clone.src.detail.DefaultFragment.DetailDefaultFragment;
+import com.example.youtube_clone.src.detail.interfaces.DetailActivityView;
+import com.example.youtube_clone.src.detail.models.DetailResponse;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
@@ -36,48 +35,72 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 
-public class DetailActivity extends BaseActivity implements View.OnClickListener {
+public class DetailActivity extends BaseActivity implements DetailActivityView, View.OnClickListener {
 
+    final DetailService detailService = new DetailService(this);
+    public static int videoIdx;
     private PlayerView exoPlayerView;
     private SimpleExoPlayer player;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private DetailDefaultFragment defaultFragment = new DetailDefaultFragment();
     private DetailComment1Fragment comment1Fragment = new DetailComment1Fragment();
     private Boolean playWhenReady = true;
-    static InputMethodManager imm;
+    public static InputMethodManager imm;
     private int currentWindow = 0;
     private Long playbackPosition = 0L;
     private static Handler timeHandler;
     TimeRunnable mTimeRunnable;
     Thread mThread = new Thread();
     boolean PLAY = true;
+    String videoUrl;
+    DefaultTimeBar tb;
+    static DetailResponse.VideoInfo mVideoInfo;
+    static int videoIndex;
+    static int commentNum;
+    PlayerControlView controller;
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        Intent intent = new Intent(this.getIntent());
+        videoIndex = intent.getIntExtra("videoIndex",-1);
+        String total = intent.getStringExtra("runTime");
+
+        if(videoIndex != -1){
+            tryGetDetailInfo(videoIndex);
+        }
+
+
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        controller = findViewById(R.id.controller2);
+         tb= controller.findViewById(R.id.exo_progress);
         exoPlayerView = findViewById(R.id.exo_detail_exoplayer);
         TextView currentTime = findViewById(R.id.exo_position);
         TextView durationTime = findViewById(R.id.exo_duration);
-        ProgressBar progressBar = findViewById(R.id.pb_detail_progress);
-        DefaultTimeBar tb = findViewById(R.id.exo_progress);
-        progressBar.setProgress(0);
-        progressBar.setMax(100);
+
         ImageView iv = findViewById(R.id.iv_detail_subscriber_profile);
         ImageButton ib = findViewById(R.id.ib_detail_thumbUp);
-        tb.hideScrubber();
-        String total = "01:58"; // 서버에서 받아온 값 넣기
-        String[] tokens = total.split(":");
+        //tb.hideScrubber();
+
+        durationTime.setText(total);
+
         fragmentManager = getSupportFragmentManager();
+
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("videoIndex", videoIndex);
+        DetailDefaultFragment defaultNewInstance = defaultFragment.newInstance();
+        defaultNewInstance.setArguments(bundle);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.frame_detail_fragment, defaultFragment.newInstance()).commit();
+        transaction.add(R.id.frame_detail_fragment, defaultNewInstance).commit();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-
+       //min to millisec
+        String[] tokens = total.split(":");
         int secondsToMs = Integer.parseInt(tokens[1]) * 1000;
         int minutesToMs = Integer.parseInt(tokens[0]) * 60000;
         long total2 = secondsToMs + minutesToMs;
@@ -90,15 +113,17 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
             public void handleMessage(Message msg) {
                 if(player!=null){
                     if(currentTime.isShown()){
-                       progressBar.setVisibility(View.GONE);
+                        tb.showScrubber();
+
                     }else{
-                        progressBar.setVisibility(View.VISIBLE);
+                        tb.hideScrubber();
+
                     }
                     String current = currentTime.getText().toString();
 
                     int prop = (int) ((player.getCurrentPosition()) / (float) total2 * 100);
 
-                    progressBar.setProgress(prop);
+
 
                 }
 
@@ -114,7 +139,6 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         public void run() {
 
             while (PLAY) {
-
                 try {
                     Thread.sleep(500);
                 } catch (Exception e) {
@@ -128,15 +152,12 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
 
         }
 
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return true; //will prevent child touch events
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
         if (Util.SDK_INT >= 24) {
-            initializePlayer();
+            initializePlayer(videoUrl);
         }
     }
 
@@ -144,8 +165,8 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
     public void onResume() {
         super.onResume();
         hideSystemUi();
-        if ((Util.SDK_INT < 24 || player == null)) {
-            initializePlayer();
+        if ((Util.SDK_INT < 24 || player == null) && videoUrl != null) {
+            initializePlayer(videoUrl);
         }
     }
 
@@ -187,10 +208,11 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
 
-    private void initializePlayer() {
+    private void initializePlayer(String url) {
         player = new SimpleExoPlayer.Builder(this).build();
         exoPlayerView.setPlayer(player);
-        Uri uri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/clone-e7f75.appspot.com/o/videos%2F'%E1%84%8C%E1%85%A9%E1%84%8A%E1%85%B5%E1%84%80%E1%85%A9%E1%84%8B%E1%85%A1'%C2%B7'%E1%84%8B%E1%85%B5%E1%86%B6%E1%84%8B%E1%85%A5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B5%E1%86%AB%20%E1%84%8B%E1%85%A5%E1%86%AF%E1%84%80%E1%85%AE%E1%86%AF'%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A2%E1%86%A8%20%E1%84%86%E1%85%A1%E1%86%AB%E1%84%82%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1%20-%20YTN.mp4?alt=media&token=6e0c0892-bc84-46f6-a014-86419f2cfb06");
+        controller.setPlayer(player);
+        Uri uri = Uri.parse(url);
         MediaSource mediaSource = buildMediaSource(uri);
         player.setPlayWhenReady(playWhenReady);
         player.seekTo(currentWindow, playbackPosition);
@@ -230,6 +252,26 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
 
 
         }
+    }
+
+    private void tryGetDetailInfo(int idx) {
+        DetailService.getDetailVideoPath(idx);
+    } // 처음 접속 시에는 페이지 1 호출
+
+    @Override
+    public void validateSuccess(DetailResponse.Result result) {
+        //DetailDefaultFragment.getDetailInfo(result.getVideoInfo());
+        videoUrl = result.getVideoInfo().getVideoUrl();
+        videoIdx = result.getVideoInfo().getVideoIdx();
+        commentNum = result.getVideoInfo().getCommentsCount();
+        initializePlayer(videoUrl);
+
+    }
+
+    @Override
+    public void validateFailure(@Nullable String message) {
+        showCustomToast(message == null || message.isEmpty() ? getString(R.string.detail_info_error) : message);
+
     }
 
 

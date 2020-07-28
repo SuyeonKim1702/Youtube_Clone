@@ -14,6 +14,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.youtube_clone.R;
+import com.example.youtube_clone.src.detail.Comment1Fragment.DetailComment1Service;
+import com.example.youtube_clone.src.detail.Comment2Fragment.DetailComment2Fragment;
+import com.example.youtube_clone.src.detail.Comment2Fragment.DetailComment2Service;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,7 +29,7 @@ public class SubCommentAdapter extends BaseAdapter {
     static Context mContext;
     int newstate;
 
-    SubCommentAdapter(ArrayList<SubComment> data, Context context){
+    public SubCommentAdapter(ArrayList<SubComment> data, Context context){
         mSubCommentList = data; // 글 목록 리스트를 불러옴
         mInflate= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -183,9 +186,8 @@ public class SubCommentAdapter extends BaseAdapter {
 
                                 break;
                             case R.id.popup_item_delete:
-                                DetailComment2Fragment.mSubCommentList.remove(position);
+                                DetailComment2Fragment.onDelete(position);
                                 //서버에서 삭제 처리
-                                notifyDataSetChanged();
                                 break;
                         }
                         return true;

@@ -14,93 +14,16 @@ public class DefaultResponse implements Serializable {
         @SerializedName("video")
         Video[] video;
 
-        @SerializedName("community")
-        Community[] community;
-
-        @SerializedName("storyVideo")
-        Story[] story;
-
         public Video[] getVideo() {
             return video;
         }
-
-        public Community[] getCommunity() {
-            return community;
-        }
-
-        public Story[] getstory() {
-            return story;
-        }
-
-
-    }
-
-    public class Community implements Serializable{
-
-        @SerializedName("UserId")
-        private String channelName;
-        @SerializedName("CreateAt")
-        private String createAt;
-        @SerializedName("MainText")
-        private String mainText;
-        @SerializedName("LikesCount")
-        private String likesCount;
-        @SerializedName("ImgUrl")
-        private String imgUrl;
-        @SerializedName("ProfileUrl")
-        private String profileUrl;
-        @SerializedName("CommentCount")
-        private int commentCount;
-        //추가해줄 것
-
-        public String getChannelName() { return channelName; }
-        public String getCreateAt() {
-            return createAt;
-        }
-        public String getMainText() {
-            return mainText;
-        }
-        public String getLikesCount() {
-            return likesCount;
-        }
-        public String getImgUrl() {
-            return imgUrl;
-        }
-        public String getProfileUrl() {
-            return profileUrl;
-        }
-        public int getCommentCount() {
-            return commentCount;
-        }
-
-
-    }
-
-    public class Story implements Serializable{
-
-        @SerializedName("UserId")
-        private String channelName;
-        @SerializedName("ProfileUrl")
-        private String profileUrl;
-        @SerializedName("ThumUrl")
-        private String thumUrl;
-        //추가해줄 것
-
-        public String getChannelName() { return channelName; }
-
-        public String getThumbUrl() {
-            return thumUrl;
-        }
-        public String getProfileUrl() {
-            return profileUrl;
-        }
-
-
 
     }
 
 
     public class Video implements Serializable{
+        @SerializedName("VideoIdx")
+        private int videoIdx;
         @SerializedName("TitleText")
         private String titleText;
         @SerializedName("UserId")
@@ -116,6 +39,9 @@ public class DefaultResponse implements Serializable {
         @SerializedName("PlayTime")
         private String playTime;
 
+        public int getVideoIndex() {
+            return videoIdx;
+        }
         public String getTitle() {
             return titleText;
         }

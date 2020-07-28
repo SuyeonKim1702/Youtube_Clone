@@ -11,18 +11,28 @@
 
     tools:targetApi="28">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:paddingTop="4dp"
-        android:orientation="horizontal"></LinearLayout>
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.7">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_save_white"
+        android:background="#80484848"></ImageButton>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_more"
+        android:background="@color/iconBackgroundColor"></ImageButton>
+</LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:gravity="center"
         android:paddingTop="4dp"
         android:orientation="horizontal">
@@ -48,15 +58,12 @@
         <ImageButton android:id="@id/exo_next"
             style="@style/ExoMediaButton.Next"/>
 
-
-
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -64,8 +71,8 @@
         <TextView android:id="@id/exo_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textStyle="bold"
+            android:textSize="10sp"
+            android:layout_gravity="center_vertical"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:includeFontPadding="false"
@@ -74,43 +81,25 @@
             android:text="/"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textStyle="bold"
+            android:textSize="10sp"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:includeFontPadding="false"
-            android:textColor="#000000"/>
+            android:textColor="#ffffff"/>
         <TextView android:id="@id/exo_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textStyle="bold"
+            android:textSize="10sp"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:includeFontPadding="false"
-            android:textColor="#000000"/>
-
-
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.2"></View>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <com.google.android.exoplayer2.ui.DefaultTimeBar
-            android:id="@+id/exo_progress"
-            android:layout_marginStart="-8dp"
-            android:layout_marginEnd="-8dp"
-            android:scrollbarSize="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:forceHasOverlappingRendering="true"
-            app:played_color="@color/colorPrimary"
-            app:scrubber_color="@color/colorPrimary" />
-
-
-
-    </LinearLayout>
 
 </LinearLayout>
