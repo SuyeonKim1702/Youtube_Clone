@@ -26,7 +26,7 @@
 
 ## 스크린 샷
 <div>
-<img width="300" src = ./img/%E1%84%8B%E1%85%B2%E1%84%90%E1%85%B2%E1%84%87%E1%85%B31.png>
-<img width="290" src = ./img/%E1%84%8B%E1%85%B2%E1%84%90%E1%85%B2%E1%84%87%E1%85%B32.png>
-<img width="300" src = ./img/%E1%84%8B%E1%85%B2%E1%84%90%E1%85%B2%E1%84%87%E1%85%B33.png>
+<img width="200" src = ./img/%E1%84%8B%E1%85%B2%E1%84%90%E1%85%B2%E1%84%87%E1%85%B31.png>
+<img width="190" src = ./img/%E1%84%8B%E1%85%B2%E1%84%90%E1%85%B2%E1%84%87%E1%85%B32.png>
+<img width="200" src = ./img/%E1%84%8B%E1%85%B2%E1%84%90%E1%85%B2%E1%84%87%E1%85%B33.png>
 </div>
