@@ -22,8 +22,6 @@ public class ApplicationClass extends Application {
 
     // 테스트 서버 주소
     public static String BASE_URL = "http://13.124.56.187/";
-    // 실서버 주소
-   //   public static String BASE_URL = "https://template.softsquared.com/";
 
     public static SharedPreferences sSharedPreferences = null;
 
@@ -31,7 +29,7 @@ public class ApplicationClass extends Application {
     public static String TAG = "TEMPLATE_APP";
 
     // JWT Token 값
-    public static String X_ACCESS_TOKEN = "X-ACCESS-TOKEN";
+    public static String X_ACCESS_TOKEN;
 
     //날짜 형식
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
